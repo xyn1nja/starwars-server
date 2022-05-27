@@ -1,6 +1,6 @@
 import { sith, planetKiller, planet, getApiData } from "../helpers/helpers.js";
 
-const resolveStarship = async (vaderData) => {
+export const resolveStarship = async (vaderData) => {
   let starship;
   const starshipUrl = String(vaderData.results[0].starships);
   let value = await fetch(starshipUrl);
@@ -17,7 +17,7 @@ const resolveStarship = async (vaderData) => {
   return starship;
 };
 
-const resolveCrew = (deathStarData) => {
+export const resolveCrew = (deathStarData) => {
   let crew;
   let deathStarCrew = deathStarData.results[0].crew;
   if (
@@ -32,7 +32,7 @@ const resolveCrew = (deathStarData) => {
   return crew;
 };
 
-const resolveLeia = async (alderaanData) => {
+export const resolveLeia = async (alderaanData) => {
   let isLeiaOnPlanet;
   let alderaanResidents = alderaanData.results[0].residents;
   for (let i = 0; i < alderaanResidents.length; i++) {
@@ -46,7 +46,6 @@ const resolveLeia = async (alderaanData) => {
   return isLeiaOnPlanet;
 };
 
-// exposed function
 export const showAttack = async (req, res) => {
   const vaderData = await getApiData(sith);
   const starship = await resolveStarship(vaderData);
