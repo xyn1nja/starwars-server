@@ -18,6 +18,9 @@ app.use(cors());
 // routes
 // in this case, the route is "/information" passed from infoRoute
 app.use("/", infoRoute);
+app.get("/", (req, res) => {
+  res.send("Hello");
+});
 
 // start listening to the port and host (in this case it will be localhost)
 const server = app.listen(process.env.PORT || 5000, () =>

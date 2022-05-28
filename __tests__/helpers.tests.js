@@ -1,6 +1,9 @@
+// importing functions and variables
 import { sith, planetKiller, planet, getApiData } from "../helpers/helpers.js";
 
+// Testing fetching data from external API provided
 describe("Retrieving data from external API", () => {
+  // Testing that it returns the expected data for Darth Vader
   test("It should return the correct data for Darth Vader", async () => {
     const data = await getApiData(sith);
     const result = data.results[0];
@@ -9,6 +12,7 @@ describe("Retrieving data from external API", () => {
     expect(result.starships);
   });
 
+  // Testing that it returns the expected data for the Death Star
   test("It should return the correct data for the Death Star", async () => {
     const data = await getApiData(planetKiller);
     const result = data.results[0];
@@ -17,6 +21,7 @@ describe("Retrieving data from external API", () => {
     expect(result.crew);
   });
 
+  // Testing that it returns the expected data for the planet Alderaan
   test("It should return the correct data for the planet Alderaan", async () => {
     const data = await getApiData(planet);
     const result = data.results[0];
