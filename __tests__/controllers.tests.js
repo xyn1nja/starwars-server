@@ -9,17 +9,11 @@ import {
 let vaderData;
 let deathStarData;
 let alderaanData;
-// let starship;
-// let crew;
-// let isLeiaOnPlanet;
 
 beforeAll(async () => {
   vaderData = await getApiData(sith);
   deathStarData = await getApiData(planetKiller);
   alderaanData = await getApiData(planet);
-  // starship = await resolveStarship(vaderData);
-  // crew = resolveCrew(deathStarData);
-  // isLeiaOnPlanet = await resolveLeia(alderaanData);
 });
 
 describe("resolveStarship", () => {

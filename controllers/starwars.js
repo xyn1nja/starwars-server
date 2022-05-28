@@ -87,5 +87,5 @@ export const showAttack = async (req, res) => {
   const alderaanData = await getApiData(planet);
   const isLeiaOnPlanet = await resolveLeia(alderaanData);
 
-  res.send(JSON.stringify({ starship, crew, isLeiaOnPlanet }, null, 4));
+  res.json({ starship, crew, isLeiaOnPlanet });
 };
