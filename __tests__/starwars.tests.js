@@ -9,30 +9,45 @@ import {
 let vaderData;
 let deathStarData;
 let alderaanData;
+// let starship;
+// let crew;
+// let isLeiaOnPlanet;
 
 beforeAll(async () => {
   vaderData = await getApiData(sith);
   deathStarData = await getApiData(planetKiller);
   alderaanData = await getApiData(planet);
+  // starship = await resolveStarship(vaderData);
+  // crew = resolveCrew(deathStarData);
+  // isLeiaOnPlanet = await resolveLeia(alderaanData);
 });
 
 describe("resolveStarship", () => {
   test("It should return the starship object", async () => {
-    const data = await resolveStarship(vaderData);
-    expect(typeof data).toBe("object");
+    const starship = await resolveStarship(vaderData);
+    expect(typeof starship).toBe("object");
   });
 });
 
 describe("resolveCrew", () => {
   test("It should return the number of crew on the starship as a number", () => {
-    const data = resolveCrew(deathStarData);
-    expect(typeof data).toBe("number");
+    const crew = resolveCrew(deathStarData);
+    expect(typeof crew).toBe("number");
   });
 });
 
 describe("resolveLeia", () => {
   test("It should return whether Leia is on Alderaan as a boolean value", async () => {
-    const data = await resolveLeia(alderaanData);
-    expect(typeof data).toBe("boolean");
+    const isLeiaOnPlanet = await resolveLeia(alderaanData);
+    expect(typeof isLeiaOnPlanet).toBe("boolean");
+  });
+});
+
+describe("showAttack", () => {
+  test("It should return the information on the attack", async () => {
+    const starship = await resolveStarship(vaderData);
+    const crew = resolveCrew(deathStarData);
+    const isLeiaOnPlanet = await resolveLeia(alderaanData);
+    expect(typeof { starship, crew, isLeiaOnPlanet }).toBe("object");
   });
 });

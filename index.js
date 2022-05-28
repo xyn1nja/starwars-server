@@ -13,5 +13,3 @@ app.use("/", infoRoute);
 app.listen(process.env.PORT || 5000, () =>
   console.log(`🚀 Server ready at port ${process.env.PORT || 5000}`)
 );
-
-//use docker to resolve versioning issues

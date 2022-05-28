@@ -1,5 +1,14 @@
 # starwars-server
 
-### Start the server
+### Starting the server
 
-Run `docker compose up`
+_In the terminal, run this command:_
+
+`docker compose up`
+
+### Running tests with docker
+
+_In a separate terminal, run the following commands:_
+
+`docker build -t node-docker --target test .`
+`docker run -it --rm -p 8000:8000 node-docker`
