@@ -24,5 +24,5 @@ describe("Testing API endpoint", () => {
     } else {
       expect(res.body.starship).toEqual({});
     }
-  });
+  }, 7000);
 });

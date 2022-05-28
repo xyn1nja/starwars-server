@@ -78,7 +78,6 @@ describe("Testing the showAttack function", () => {
     const starship = await resolveStarship(vaderData);
     const crew = resolveCrew(deathStarData);
     const isLeiaOnPlanet = await resolveLeia(alderaanData);
-    console.log({ starship, crew, isLeiaOnPlanet });
     expect(typeof { starship, crew, isLeiaOnPlanet }).toBe("object");
     expect(typeof { starship, crew, isLeiaOnPlanet }.starship).toBe("object");
     expect(typeof { starship, crew, isLeiaOnPlanet }.crew).toBe("number");
