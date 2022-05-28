@@ -16,7 +16,7 @@ beforeAll(async () => {
   vaderData = await getApiData(sith);
   deathStarData = await getApiData(planetKiller);
   alderaanData = await getApiData(planet);
-});
+}, 7000);
 
 // testing the resolveStarship function
 describe("Testing the resolveStarship function", () => {
