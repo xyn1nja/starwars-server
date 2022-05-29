@@ -15,14 +15,19 @@ export const resolveStarship = async (vaderData) => {
   if (!starshipUrl.length) {
     return (starship = {});
   } else {
-    let value = await fetch(starshipUrl);
-    const starshipData = await value.json();
-    starship = {
-      name: starshipData.name,
-      class: starshipData.starship_class,
-      model: starshipData.model,
-    };
-    return starship;
+    try {
+      let value = await fetch(starshipUrl);
+      const starshipData = await value.json();
+      starship = {
+        name: starshipData.name,
+        class: starshipData.starship_class,
+        model: starshipData.model,
+      };
+      return starship;
+      // handling errors
+    } catch (err) {
+      console.log(err);
+    }
   }
 };
 
@@ -40,13 +45,13 @@ export const resolveCrew = (deathStarData) => {
   if (
     deathStarCrew === "" ||
     deathStarCrew === "0" ||
+    deathStarCrew === 0 ||
     isNaN(parseInt(deathStarCrew))
   ) {
     return (crew = 0);
   } else {
     crew = parseInt(deathStarCrew.split(",").join(""));
   }
-  // console.log(typeof crew);
   return crew;
 };
 
@@ -66,26 +71,34 @@ export const resolveLeia = async (alderaanData) => {
     return (isLeiaOnPlanet = false);
   } else {
     for (let i = 0; i < alderaanResidents.length; i++) {
-      let value = await fetch(alderaanResidents[i]);
-      const data = await value.json();
-      if (data.name.includes("Leia")) {
-        return (isLeiaOnPlanet = true);
-      } else isLeiaOnPlanet = false;
+      try {
+        let value = await fetch(alderaanResidents[i]);
+        const data = await value.json();
+        if (data.name.includes("Leia")) {
+          return (isLeiaOnPlanet = true);
+        } else isLeiaOnPlanet = false;
+        return isLeiaOnPlanet;
+        // handling errors
+      } catch (err) {
+        console.log(err);
+      }
     }
-    return isLeiaOnPlanet;
   }
 };
 
 // controller function to send attack details derived from the Darth Vader data, Death Star data, and Alderaan data as a response (json object)
 export const showAttack = async (req, res) => {
-  const vaderData = await getApiData(sith);
-  const starship = await resolveStarship(vaderData);
-
-  const deathStarData = await getApiData(planetKiller);
-  const crew = resolveCrew(deathStarData);
-
-  const alderaanData = await getApiData(planet);
-  const isLeiaOnPlanet = await resolveLeia(alderaanData);
-
-  res.json({ starship, crew, isLeiaOnPlanet });
+  try {
+    const vaderData = await getApiData(sith);
+    const starship = await resolveStarship(vaderData);
+    const deathStarData = await getApiData(planetKiller);
+    const crew = resolveCrew(deathStarData);
+    const alderaanData = await getApiData(planet);
+    const isLeiaOnPlanet = await resolveLeia(alderaanData);
+    res.json({ starship, crew, isLeiaOnPlanet });
+    // handling errors
+  } catch (err) {
+    console.log(err);
+    res.send(err);
+  }
 };

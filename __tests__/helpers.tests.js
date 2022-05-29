@@ -10,7 +10,7 @@ describe("Retrieving data from external API", () => {
     await expect(getApiData(sith)).resolves;
     expect(result.name).toEqual("Darth Vader");
     expect(result.starships);
-  });
+  }, 7000);
 
   // Testing that it returns the expected data for the Death Star
   test("It should return the correct data for the Death Star", async () => {
@@ -19,7 +19,7 @@ describe("Retrieving data from external API", () => {
     await expect(getApiData(planetKiller)).resolves;
     expect(result.name).toEqual("Death Star");
     expect(result.crew);
-  });
+  }, 7000);
 
   // Testing that it returns the expected data for the planet Alderaan
   test("It should return the correct data for the planet Alderaan", async () => {
@@ -28,5 +28,5 @@ describe("Retrieving data from external API", () => {
     await expect(getApiData(planet)).resolves;
     expect(result.name).toEqual("Alderaan");
     expect(result.residents);
-  });
+  }, 7000);
 });

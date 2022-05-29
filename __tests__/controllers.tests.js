@@ -26,7 +26,7 @@ describe("Testing the resolveStarship function", () => {
     expect(typeof starship.name).toBe("string");
     expect(typeof starship.class).toBe("string");
     expect(typeof starship.model).toBe("string");
-  });
+  }, 7000);
 
   test("It should return starship as an empty object if no starship exists", async () => {
     const mockVaderData = {
@@ -69,7 +69,7 @@ describe("Testing the resolveLeia function", () => {
   test("It should return whether Leia is on Alderaan as a boolean value", async () => {
     const isLeiaOnPlanet = await resolveLeia(alderaanData);
     expect(typeof isLeiaOnPlanet).toBe("boolean");
-  });
+  }, 7000);
 });
 
 // testing the showAttack function
@@ -84,5 +84,5 @@ describe("Testing the showAttack function", () => {
     expect(typeof { starship, crew, isLeiaOnPlanet }.isLeiaOnPlanet).toBe(
       "boolean"
     );
-  });
+  }, 7000);
 });

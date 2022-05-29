@@ -8,7 +8,7 @@ afterAll(() => {
   server.close();
 });
 
-// Testing whether the /information endpoint returns the correct data
+// Testing whether the API endpoint returns the correct data
 describe("Testing API endpoint", () => {
   test("The /information endpoint should return the correct data", async () => {
     const res = await request(server).get("/information");
@@ -25,4 +25,9 @@ describe("Testing API endpoint", () => {
       expect(res.body.starship).toEqual({});
     }
   }, 7000);
+
+  test("The mock endpoint should fail", async () => {
+    const res = await request(server).get("/mock");
+    expect(res.statusCode).toBe(404);
+  });
 });
